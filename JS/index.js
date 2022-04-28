@@ -83,23 +83,22 @@ const lang = get("kbLang", '"en"');
 
 new Keyboard(rowsOrder).init(lang).generateLayout();
 
-const textarea = document.querySelector(".output");
+let textarea = document.querySelector(".output");
 const keyboardKeys = document.querySelectorAll(".keyboard_key");
 
 function checkKeyboard(event) {
-  console.log(event.target);
+  textarea = document.querySelector(".output");
   const key = document.querySelector(`[data-code=${event.code}]`);
   key.classList.add("light");
   setTimeout(() => {
     key.classList.remove("light");
   }, 500);
-  // textarea.innerHTML += event.target.key.textContent;
+  textarea.innerHTML += event.key;
 }
 document.addEventListener("keydown", checkKeyboard);
 
-// function checkScreen(e) {
-//   //checkLight();
-//   console.log(e.target);
-//   // textarea.innerHTML += e.target.textContent;
-// }
-// keyboardKeys.forEach((el) => el.addEventListener("click", checkScreen));
+function checkScreen(e) {
+  textarea = document.querySelector(".output");
+  textarea.innerHTML += e.target.innerHTML;
+}
+keyboardKeys.forEach((el) => el.addEventListener("click", checkScreen));
