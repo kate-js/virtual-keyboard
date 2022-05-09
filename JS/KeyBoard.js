@@ -10,7 +10,11 @@ const main = create("main", "", [
 
 const info = create("main", "", [
   create("h3", "subtitle", "Клавиатура создана в операционной системе macOS"),
-  create("p", "hint", "Для переключения языка комбинация:"),
+  create(
+    "p",
+    "hint",
+    "Для переключения языка комбинация: Ctrl + Opt (Ctrl+Alt для Windows)"
+  ),
 ]);
 
 export default class KeyBoard {
