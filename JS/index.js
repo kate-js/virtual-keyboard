@@ -79,7 +79,6 @@ const rowsOrder = [
   ],
 ];
 
-// let lang = set("kbLang", "en");
 let lang = get("kbLang") || "en";
 
 const keyboard = new Keyboard(rowsOrder);
