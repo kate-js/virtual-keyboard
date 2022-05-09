@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { get } from "./storage.js";
+import { get, set } from "./storage.js";
 import Keyboard from "./KeyBoard.js";
 
 const rowsOrder = [
@@ -79,9 +79,12 @@ const rowsOrder = [
   ],
 ];
 
-const lang = get("kbLang", '"en"');
+// let lang = set("kbLang", "en");
+let lang = get("kbLang") || "en";
 
-new Keyboard(rowsOrder).init(lang).generateLayout();
+const keyboard = new Keyboard(rowsOrder);
+keyboard.init(lang);
+keyboard.generateLayout();
 
 let textarea = document.querySelector(".output");
 const keyboardKeys = document.querySelectorAll(".keyboard_key");
@@ -102,3 +105,25 @@ function checkScreen(e) {
   textarea.innerHTML += e.target.innerHTML;
 }
 keyboardKeys.forEach((el) => el.addEventListener("click", checkScreen));
+
+let keyPressed = {};
+function pressed(e) {
+  keyPressed[e.code] = true;
+  if (keyPressed.AltLeft === true && keyPressed.ControlLeft === true) {
+    keyPressed = {};
+    if (lang === "en") {
+      lang = set("kbLang", "ru");
+    } else {
+      lang = set("kbLang", "en");
+    }
+    keyboard.changeLanguage(lang);
+  }
+}
+document.addEventListener("keydown", pressed, false);
+
+function up(e) {
+  keyPressed[e.code] = false;
+  keyPressed = {};
+}
+
+document.addEventListener("keyup", up, false);

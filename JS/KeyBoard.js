@@ -42,6 +42,16 @@ export default class KeyBoard {
     return this;
   }
 
+  changeLanguage(lang) {
+    this.keyBase = language[lang];
+    this.container.remove();
+    this.container = create("div", "body--keyboard keyboard", null, main, [
+      "language",
+      lang,
+    ]);
+    this.generateLayout();
+  }
+
   generateLayout() {
     this.keyButtons = [];
     this.rowsOrder.forEach((row, i) => {
