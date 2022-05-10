@@ -10,11 +10,11 @@ export default class Key {
       small.match(/Ctrl|arr|Alt|Shift|Tab|Del|Enter|Caps|Win|Back/)
     );
 
-    // if (shift && shift.match(/[^a-zA-Zа-яА-ЯёЁ0-9]/)) {
-    //   this.sub = create("div", "sub", this.shift);
-    // } else {
-    //   this.sub = create("div", "sub", "");
-    // }
+    if (shift && shift.match(/[^a-zA-Zа-яА-ЯёЁ0-9]/)) {
+      this.sub = create("div", "sub", this.small);
+    } else {
+      this.sub = create("div", "sub", "");
+    }
 
     this.letter = create("div", "letter", small);
 
