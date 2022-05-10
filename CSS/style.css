@@ -1,0 +1,99 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main p {
+  margin: 0;
+}
+
+h1 {
+  color: #72b165;
+}
+
+.body--keyboard {
+  width: 704px;
+  margin: 0 auto;
+  padding: 5px;
+  padding-left: 0;
+  padding-bottom: 0;
+  background: #888888;
+  border: 3px solid #222222;
+  border-radius: 5px;
+}
+
+.output {
+  display: block;
+  width: 690px;
+  height: 200px;
+  margin: 10px auto 10px;
+  padding: 10px;
+  font-size: 18px;
+  color: #444444;
+  border: 2px solid black;
+}
+
+.key_row {
+  clear: both;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+.keyboard_key {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-left: 6px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+  background: #444444;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-radius 0.3s, background-color 0.3s;
+}
+
+.keyboard_key:active,
+.light {
+  animation-name: example;
+  animation-duration: 1s;
+}
+
+[data-code="Backspace"],
+[data-code="CapsLock"],
+[data-code="ShiftLeft"] {
+  width: 100px;
+}
+
+[data-code="Tab"] {
+  width: 54px;
+}
+
+[data-code="Enter"],
+[data-code="ShiftRight"] {
+  width: 86px;
+}
+
+[data-code="Space"] {
+  width: 330px;
+}
+
+[data-code="ArrowLeft"] .letter,
+[data-code="ArrowRight"] .letter,
+[data-code="ArrowDown"] .letter {
+  display: none;
+}
+
+@keyframes example {
+  from {
+    background-color: #72b165;
+    border-radius: 50%;
+  }
+  to {
+    background-color: #888888;
+  }
+}
