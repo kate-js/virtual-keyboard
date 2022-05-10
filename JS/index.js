@@ -91,17 +91,52 @@ const keyboardKeys = document.querySelectorAll(".keyboard_key");
 function checkKeyboard(event) {
   textarea = document.querySelector(".output");
   const key = document.querySelector(`[data-code=${event.code}]`);
+  const valueKey = document.querySelector(
+    `[data-code=${event.code}] div.letter`
+  );
   key.classList.add("light");
   setTimeout(() => {
     key.classList.remove("light");
   }, 500);
-  textarea.innerHTML += event.key;
+  if (
+    event.code === "ControlLeft" ||
+    event.code === "Tab" ||
+    event.code === "CapsLock" ||
+    event.code === "AltLeft" ||
+    event.code === "AltRight" ||
+    event.code === "Backspace" ||
+    event.code === "Space" ||
+    event.code === "ControlRight" ||
+    event.code === "ShiftLeft" ||
+    event.code === "ShiftRight" ||
+    event.code === "MetaLeft" ||
+    event.code === "Enter"
+  ) {
+    textarea.innerHTML += "";
+  } else {
+    textarea.innerHTML += valueKey.innerHTML;
+  }
 }
 document.addEventListener("keydown", checkKeyboard);
 
-function checkScreen(e) {
+function checkScreen(event) {
   textarea = document.querySelector(".output");
-  textarea.innerHTML += e.target.innerHTML;
+  if (
+    event.target.innerHTML === "CapsLock" ||
+    event.target.innerHTML === "Tab" ||
+    event.target.innerHTML === "Shift" ||
+    event.target.innerHTML === "Ctrl" ||
+    event.target.innerHTML === "Win" ||
+    event.target.innerHTML === "Alt" ||
+    event.target.innerHTML === "Space" ||
+    event.target.innerHTML === "Enter" ||
+    event.target.innerHTML === "Del" ||
+    event.target.innerHTML === "Backspace"
+  ) {
+    textarea.innerHTML += "";
+  } else {
+    textarea.innerHTML += event.target.innerHTML;
+  }
 }
 keyboardKeys.forEach((el) => el.addEventListener("click", checkScreen));
 
@@ -115,7 +150,9 @@ function pressed(e) {
     } else {
       lang = set("kbLang", "en");
     }
+    textarea = document.querySelector(".output");
     keyboard.changeLanguage(lang);
+    textarea = document.querySelector(".output");
   }
 }
 document.addEventListener("keydown", pressed, false);
